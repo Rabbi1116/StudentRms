@@ -92,6 +92,15 @@
                         </p>
                     </a>
                 </li>
+                   
+                <li class="nav-item">
+                    <a href="{{ route('selectstudentclass')}}" class="nav-link list-group-item list-group-item-action active">
+                    <i class="fas fa-poll-h"></i>
+                        <p>
+                          Student Result
+                        </p>
+                    </a>
+                </li>
 
                 <li class="nav-item">
                     <a href="" class="nav-link list-group-item list-group-item-action active">
@@ -101,6 +110,8 @@
                         </p>
                     </a>
                 </li>
+
+
                 <li class="nav-item">
                 
                     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();

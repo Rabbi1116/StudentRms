@@ -32,6 +32,13 @@ class GradepointController extends Controller
     return view('admin/student/grading', ['student' => $student, 'subject' => $subject]);
   }
 
+  public function indexOne()
+  {
+
+   return view('admin/student/selectstudentclass');
+
+  }
+
   public function subject_check(Request $request)
 
   {
@@ -124,9 +131,27 @@ class GradepointController extends Controller
    * @param  \App\Models\Gradepoint  $gradepoint
    * @return \Illuminate\Http\Response
    */
-  public function show(Gradepoint $gradepoint)
+
+  public function show(Request $req)
   {
-    //
+    // dd($req->class);
+
+
+    $studentnameshow = DB::table('gradepoints')
+    ->join('students','students.user_id','=','gradepoints.student_id')
+    ->where('class',$req->class)
+    ->select(DB::raw('name,student_id,subject_id'))
+    ->groupBy('student_id')
+    ->get();
+
+    $studentresultshow = DB::table('gradepoints')
+    ->join('topics','topics.id','=','gradepoints.subject_id')
+    ->get();
+
+    // dd($studentnameshow);
+
+    return view('admin/student/studentresult',['stname'=>$studentnameshow,'result'=>$studentresultshow]);
+    
   }
 
   /**

@@ -94,7 +94,6 @@ class StudentController extends Controller
 
     public function studentProfile()
     {
-
       $userProfileId=Auth::user()->id;
       $userAuth=Student::where('user_id',$userProfileId)->first();
       return view('admin/student/profile',['userAuth'=>$userAuth]);

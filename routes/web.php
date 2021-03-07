@@ -38,6 +38,10 @@ Route::get('subject_show',[SubjectController::class,'show'])->name('selected_sub
 Route::get('MarkingandGrading',[GradepointController::class,'index'])->name('grading');
 Route::post('/subjectname', [GradepointController::class,'subject_check'])->name('subjectname');
 Route::post('/markadd', [GradepointController::class,'store'])->name('markadd');
+Route::post('/studentresult',[GradepointController::class,'show'])->name('studentresult');
+Route::get('/studentclass',[GradepointController::class,'indexOne'])->name('selectstudentclass');
+
+
 
 
 Route::get('Profile',[StudentController::class,'studentProfile'])->name('profile');
