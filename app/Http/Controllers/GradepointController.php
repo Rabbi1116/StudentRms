@@ -148,7 +148,7 @@ class GradepointController extends Controller
     ->join('topics','topics.id','=','gradepoints.subject_id')
     ->get();
 
-    // dd($studentnameshow);
+    // dd($studentresultshow);
 
     return view('admin/student/studentresult',['stname'=>$studentnameshow,'result'=>$studentresultshow]);
     

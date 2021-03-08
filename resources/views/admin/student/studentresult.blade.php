@@ -23,9 +23,9 @@ Selected Result
                     <div class="card-body">
                         <table id="example1" class="table table-bordered ">
                             <col style="width:10%">
-                            <col style="width:20%">
-                            <col style="width:50%">
-                            <col style="width:20%">
+                            <col style="width:20%;">
+                            <col style="width:60%">
+                            <col style="width:10%">
                             <thead>
 
                                 <tr>
@@ -51,14 +51,16 @@ Selected Result
                                                 <th>Number</th>
 
                                             </tr>
-                                            @foreach($result as $result)
+                                            @foreach($result as $results)
                                             <tr class="table-bordered">
+                                            @if($results->student_id == $studentname->student_id)
 
-                                                <td>{{$result->title}}</td>
-                                                <td>{{$result->marks}}</td>
-                                                <td>{{$result->grade}}</td>
+                                                <td>{{$results->title}}</td>
+                                                <td>{{$results->marks}}</td>
+                                                <td>{{$results->grade}}</td>
                                                 
 
+                                                @endif
                                             </tr>
                                             @endforeach
                                         </table>
