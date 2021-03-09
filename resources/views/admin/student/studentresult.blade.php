@@ -40,37 +40,59 @@ Selected Result
                                 @foreach($stname as $key => $studentname)
 
                                 <tr>
-                                    <td>{{$key+1}}</td>
+                                    <td style="padding:100px 0; text-align:center;">{{$key+1}}</td>
 
-                                    <td>{{$studentname->name}}</td>
+                                    <td style="padding:100px 0; text-align:center;">{{$studentname->name}}</td>
                                     <td>
                                         <table class="table  ">
                                             <tr>
                                                 <th>Subject</th>
-                                                <th>Grade Point</th>
                                                 <th>Number</th>
+                                                <th>Grade Point</th>
+                                                <th>GPA</th>
 
                                             </tr>
+                                            <?php $k = 0; ?>
                                             @foreach($result as $results)
                                             <tr class="table-bordered">
-                                            @if($results->student_id == $studentname->student_id)
 
-                                                <td>{{$results->title}}</td>
-                                                <td>{{$results->marks}}</td>
-                                                <td>{{$results->grade}}</td>
-                                                
+                                                @if($results->student_id == $studentname->student_id)
 
-                                                @endif
-                                            </tr>
-                                            @endforeach
-                                        </table>
+                                                @if($results->marks < 33) <?php $k++; ?> @endif <td>{{$results->title}}
                                     </td>
+                                    <td>{{$results->marks}}</td>
+                                    <td>{{$results->grade_point}}</td>
+                                    <td>{{$results->grade}}</td>
 
-                                    <td></td>
+                                    @endif
                                 </tr>
-                                @endforeach
 
-                                </tfoot>
+                                @endforeach
+                                <tr>
+                                    <th style="border: none;text-align:right">Total:</th>
+                                    <th style="border: none;">{{$studentname->number}}</th>
+                                </tr>
+                        </table>
+
+                        </td>
+
+                        <td style=" padding-top:100px; text-align:center;">
+                            <h6>
+                                <b>
+                                    @if($k > 0) 
+                                    {{ 'Faild in : '.$k.' Subject'}} 
+                                     @else 
+                                     
+                                     {{$studentname->pointes/5}} 
+
+                                     @endif 
+                                     </b>
+                            </h6>
+                        </td>
+                        </tr>
+                        @endforeach
+
+                        </tfoot>
                         </table>
                     </div>
                     <!-- /.card-body -->

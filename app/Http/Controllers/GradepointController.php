@@ -95,30 +95,46 @@ class GradepointController extends Controller
     $marks_number = $request->marks;
 
     $grade = "";
+    $point ="";
 
 
     for ($i = 0; $i < count($subjects_id); $i++) {
       if ($marks_number[$i] < 33) {
+
         $grade = "F";
+        $point =00;
+
       } elseif ($marks_number[$i] >= 33 && $marks_number[$i] < 40) {
+
         $grade = "D";
+        $point =1.00;
+
       } elseif ($marks_number[$i] >= 40 && $marks_number[$i] < 50) {
+
         $grade = "C";
+        $point =2.00;
       } elseif ($marks_number[$i] >= 50 && $marks_number[$i] < 60) {
         $grade = "B";
+        $point =3.00;
       } elseif ($marks_number[$i] >= 60 && $marks_number[$i] < 70) {
         $grade = "A-";
+        $point =3.50;
       } elseif ($marks_number[$i] >= 70 && $marks_number[$i] < 80) {
         $grade = "A";
+        $point =4.00;
       } elseif ($marks_number[$i] >= 80 && $marks_number[$i] <= 100) {
+
         $grade = "A+";
+        $point =5.00;
+
       }
 
       $arraydata = [
         'student_id' => $students_id,
         'subject_id' => $subjects_id[$i],
         'marks' => $marks_number[$i],
-        'grade' =>  $grade
+        'grade' =>  $grade,
+        'grade_point'=>$point
       ];
       DB::table('gradepoints')->insert($arraydata);
     }
@@ -140,16 +156,17 @@ class GradepointController extends Controller
     $studentnameshow = DB::table('gradepoints')
     ->join('students','students.user_id','=','gradepoints.student_id')
     ->where('class',$req->class)
-    ->select(DB::raw('name,student_id,subject_id'))
+    ->select(DB::raw('name,student_id,subject_id,sum(marks) as number,sum(grade_point) as pointes'))
     ->groupBy('student_id')
     ->get();
 
     $studentresultshow = DB::table('gradepoints')
     ->join('topics','topics.id','=','gradepoints.subject_id')
+    // ->select('gradepoints.*,topics.*,sum(marks) as pointe')
     ->get();
 
     // dd($studentresultshow);
-
+      
     return view('admin/student/studentresult',['stname'=>$studentnameshow,'result'=>$studentresultshow]);
     
   }

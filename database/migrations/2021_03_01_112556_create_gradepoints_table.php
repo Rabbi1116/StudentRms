@@ -19,6 +19,7 @@ class CreateGradepointsTable extends Migration
             $table->integer('subject_id');
             $table->integer('marks');
             $table->string('grade');
+            $table->decimal('grade_point');
             $table->timestamps();
         });
     }
