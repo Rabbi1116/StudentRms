@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2021 at 07:48 AM
+-- Generation Time: Mar 11, 2021 at 04:50 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -49,6 +49,7 @@ CREATE TABLE `gradepoints` (
   `subject_id` int(11) NOT NULL,
   `marks` int(11) NOT NULL,
   `grade` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `grade_point` decimal(8,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -57,13 +58,16 @@ CREATE TABLE `gradepoints` (
 -- Dumping data for table `gradepoints`
 --
 
-INSERT INTO `gradepoints` (`id`, `student_id`, `subject_id`, `marks`, `grade`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 99, 'A+', NULL, NULL),
-(2, 1, 4, 17, 'F', NULL, NULL),
-(3, 1, 5, 33, 'D', NULL, NULL),
-(4, 3, 1, 40, 'C', NULL, NULL),
-(5, 3, 2, 80, 'A+', NULL, NULL),
-(6, 3, 5, 70, 'A', NULL, NULL);
+INSERT INTO `gradepoints` (`id`, `student_id`, `subject_id`, `marks`, `grade`, `grade_point`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 33, 'D', '1.00', NULL, NULL),
+(2, 1, 2, 53, 'B', '3.00', NULL, NULL),
+(3, 1, 3, 80, 'A+', '5.00', NULL, NULL),
+(4, 2, 1, 99, 'A+', '5.00', NULL, NULL),
+(5, 2, 4, 55, 'B', '3.00', NULL, NULL),
+(6, 2, 5, 32, 'F', '0.00', NULL, NULL),
+(7, 3, 3, 12, 'F', '0.00', NULL, NULL),
+(8, 3, 4, 32, 'F', '0.00', NULL, NULL),
+(9, 3, 5, 33, 'D', '1.00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -82,13 +86,14 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(114, '2014_10_12_000000_create_users_table', 1),
-(115, '2014_10_12_100000_create_password_resets_table', 1),
-(116, '2019_08_19_000000_create_failed_jobs_table', 1),
-(117, '2021_02_10_100308_create_students_table', 1),
-(118, '2021_02_13_155900_create_subjects_table', 1),
-(119, '2021_02_15_051726_create_topics_table', 1),
-(120, '2021_03_01_112556_create_gradepoints_table', 2);
+(121, '2014_10_12_000000_create_users_table', 1),
+(122, '2014_10_12_100000_create_password_resets_table', 1),
+(123, '2019_08_19_000000_create_failed_jobs_table', 1),
+(124, '2021_02_10_100308_create_students_table', 1),
+(125, '2021_02_13_155900_create_subjects_table', 1),
+(126, '2021_02_15_051726_create_topics_table', 1),
+(127, '2021_03_01_112556_create_gradepoints_table', 1),
+(128, '2021_03_09_133555_create_settings_table', 2);
 
 -- --------------------------------------------------------
 
@@ -101,6 +106,27 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `settings`
+--
+
+CREATE TABLE `settings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `school_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `copyright_text` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`id`, `school_name`, `copyright_text`, `created_at`, `updated_at`) VALUES
+(1, 'LLD SCHOOL', 'Copyright © 10-03-2021 IT WAY BD. All rights reserved.', '2021-03-10 06:07:56', '2021-03-10 07:15:55');
 
 -- --------------------------------------------------------
 
@@ -129,10 +155,9 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `user_id`, `name`, `class`, `fatherName`, `motherName`, `phone`, `image`, `contact`, `gender`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Rabbi Hossain', 'five', NULL, NULL, 1234213434, '/storage/uploads/1614237035_55535236_2993329620680828_2352959620789567488_o.jpg', 'uttara', 'male', 1, '2021-02-17 02:57:03', '2021-02-25 01:10:36'),
-(4, 2, 'Simun Hossain', 'one', NULL, NULL, 2147483647, NULL, 'uttara', 'male', 1, '2021-02-17 02:57:03', '2021-02-17 02:57:03'),
-(5, 3, 'xyz Hossain', 'five', NULL, NULL, 21474647, NULL, 'uttara', 'male', 1, '2021-02-17 02:57:03', '2021-02-17 02:57:03'),
-(6, 4, 'Abc', 'five', NULL, NULL, 134253433, NULL, 'fdsgdfsgdsfg', 'male', 1, '2021-02-20 04:28:47', '2021-02-20 04:28:47');
+(1, 1, 'Rabbi Hossain', 'five', NULL, NULL, 34234234, '/storage/uploads/1615204907_55535236_2993329620680828_2352959620789567488_o.jpg', 'Dhaka', 'male', 1, '2021-03-08 05:58:23', '2021-03-08 06:01:48'),
+(2, 2, 'Salim', 'four', NULL, NULL, 123213344, NULL, 'uttara', 'male', 1, '2021-03-08 05:59:34', '2021-03-08 05:59:34'),
+(3, 3, 'rofik', 'three', NULL, NULL, 12423434, NULL, 'Gazipur', 'male', 1, '2021-03-08 06:00:58', '2021-03-08 06:00:58');
 
 -- --------------------------------------------------------
 
@@ -153,18 +178,15 @@ CREATE TABLE `subjects` (
 --
 
 INSERT INTO `subjects` (`id`, `student_id`, `subject_id`, `created_at`, `updated_at`) VALUES
-(1, 3, 1, NULL, NULL),
-(2, 3, 2, NULL, NULL),
-(3, 3, 3, NULL, NULL),
-(4, 1, 1, NULL, NULL),
-(5, 1, 4, NULL, NULL),
-(6, 1, 5, NULL, NULL),
-(7, 2, 1, NULL, NULL),
-(8, 2, 2, NULL, NULL),
-(9, 2, 5, NULL, NULL),
-(10, 4, 3, NULL, NULL),
-(11, 4, 4, NULL, NULL),
-(12, 4, 5, NULL, NULL);
+(1, 1, 1, NULL, NULL),
+(2, 1, 2, NULL, NULL),
+(3, 1, 3, NULL, NULL),
+(4, 2, 1, NULL, NULL),
+(5, 2, 4, NULL, NULL),
+(6, 2, 5, NULL, NULL),
+(7, 3, 3, NULL, NULL),
+(8, 3, 4, NULL, NULL),
+(9, 3, 5, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -186,9 +208,9 @@ CREATE TABLE `topics` (
 INSERT INTO `topics` (`id`, `title`, `created_at`, `updated_at`) VALUES
 (1, 'Bangla', NULL, NULL),
 (2, 'English', NULL, NULL),
-(3, 'Mathematics', NULL, NULL),
-(4, 'Islam', NULL, NULL),
-(5, 'Science', NULL, NULL);
+(3, 'Islam', NULL, NULL),
+(4, 'Science', NULL, NULL),
+(5, 'Mathematics', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -213,10 +235,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `type`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Rabbi Hossain', 'student', 'stadmin@gmail.com', NULL, '$2y$10$JZ18vc8HTi5BuafYhsU51uJOaVUJ36osuJZa1tkHCKxgDO5Rc5YIm', NULL, '2021-02-17 02:57:03', '2021-02-17 02:57:03'),
-(2, 'Simun Hossain', 'student', 'simun@gmail.com', NULL, '$2y$10$JZ18vc8HTi5BuafYhsU51uJOaVUJ36osuJZa1tkHCKxgDO5Rc5YIm', NULL, '2021-02-17 02:57:03', '2021-02-17 02:57:03'),
-(3, 'xyz Hossain', 'student', 'xyz@gmail.com', NULL, '$2y$10$JZ18vc8HTi5BuafYhsU51uJOaVUJ36osuJZa1tkHCKxgDO5Rc5YIm', NULL, '2021-02-17 02:57:03', '2021-02-17 02:57:03'),
-(4, 'Abc', 'student', 'abc@gmail.com', NULL, '$2y$10$gXZlwUY9tRTZz/QKaTMS1OwmuFV1TKXis6u6EgG3ZosplSUMqPMv6', NULL, '2021-02-20 04:28:47', '2021-02-20 04:28:47');
+(1, 'Rabbi Hossain', 'student', 'stadmin@gmail.com', NULL, '$2y$10$AwNxIAdbYqecIp/omE0hEODeWBqT1xqE5NdADxK86oVv/Dp37n8Ya', NULL, '2021-03-08 05:58:23', '2021-03-08 05:58:23'),
+(2, 'Salim', 'student', 's@gmail.com', NULL, '$2y$10$11ywJbqZhcoe7m0RKIuoY.dMuGtdq.DsCnVBI1JkQ5sYDyY6kwgGG', NULL, '2021-03-08 05:59:33', '2021-03-08 05:59:33'),
+(3, 'rofik', 'student', 'r@gmail.com', NULL, '$2y$10$5yHlAS5EF6bBqjrMNHc1Fux/StO6.p96T65rBHPlEraqtFKFa0FRu', NULL, '2021-03-08 06:00:58', '2021-03-08 06:00:58');
 
 --
 -- Indexes for dumped tables
@@ -246,6 +267,12 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `students`
@@ -287,25 +314,31 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `gradepoints`
 --
 ALTER TABLE `gradepoints`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+
+--
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `topics`
@@ -317,7 +350,7 @@ ALTER TABLE `topics`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

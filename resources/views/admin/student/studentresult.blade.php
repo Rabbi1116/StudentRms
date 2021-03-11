@@ -58,8 +58,13 @@ Selected Result
 
                                                 @if($results->student_id == $studentname->student_id)
 
-                                                @if($results->marks < 33) <?php $k++; ?> @endif <td>{{$results->title}}
-                                    </td>
+                                                @if($results->marks < 33) 
+
+                                                <?php $k++; ?>
+
+                                                 @endif
+                                                 
+                                                <td>{{$results->title}}</td>
                                     <td>{{$results->marks}}</td>
                                     <td>{{$results->grade_point}}</td>
                                     <td>{{$results->grade}}</td>
@@ -79,14 +84,14 @@ Selected Result
                         <td style=" padding-top:100px; text-align:center;">
                             <h6>
                                 <b>
-                                    @if($k > 0) 
-                                    {{ 'Faild in : '.$k.' Subject'}} 
-                                     @else 
-                                     
-                                     {{$studentname->pointes/5}} 
+                                    @if($k > 0)
+                                    {{ 'Faild in : '.$k.' Subject'}}
+                                    @else
 
-                                     @endif 
-                                     </b>
+                                    {{$studentname->pointes/5}}
+
+                                    @endif
+                                </b>
                             </h6>
                         </td>
                         </tr>

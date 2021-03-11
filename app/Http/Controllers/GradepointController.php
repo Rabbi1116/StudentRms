@@ -37,6 +37,21 @@ class GradepointController extends Controller
 
    return view('admin/student/selectstudentclass');
 
+}
+
+  public function rollstudent()
+  {
+
+    $rollnumber=DB::table('gradepoints')
+    ->join('students','students.user_id','=','gradepoints.student_id')
+    ->select(DB::raw('name,student_id,subject_id,sum(marks) as number'))
+    ->groupBy('student_id')
+    ->get();
+
+    // dd($rollnumber);
+
+   return view('admin/student/rollnumber',['stroll'=>$rollnumber]);
+
   }
 
   public function subject_check(Request $request)

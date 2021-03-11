@@ -6,6 +6,8 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\GradepointController;
+use App\Http\Controllers\SettingController;
+use Hamcrest\Core\Set;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,9 +42,7 @@ Route::post('/subjectname', [GradepointController::class,'subject_check'])->name
 Route::post('/markadd', [GradepointController::class,'store'])->name('markadd');
 Route::post('/studentresult',[GradepointController::class,'show'])->name('studentresult');
 Route::get('/studentclass',[GradepointController::class,'indexOne'])->name('selectstudentclass');
-
-
-
+Route::get('/numberofroll',[GradepointController::class,'rollstudent'])->name('rollstudent');
 
 Route::get('Profile',[StudentController::class,'studentProfile'])->name('profile');
 Route::get('Edit',[StudentController::class,'Profileedit'])->name('profileedit');
@@ -51,3 +51,8 @@ Route::get('/studentList',[StudentController::class,'show'])->name('allstudent')
 Route::get('active/{{id}}',[StudentController::class,'status']);
 Route::post('/email_available/check', [StudentController::class,'check'])->name('email_available.check');
 Route::post('/phone_available/phnchk', [StudentController::class,'phnchk'])->name('phone_available.phnchk');
+
+//    Setting Copyright text and School name
+Route::get('/Setup', [SettingController::class,'index'])->name('settings');
+Route::post('/Setup', [SettingController::class,'store'])->name('setting_web');
+

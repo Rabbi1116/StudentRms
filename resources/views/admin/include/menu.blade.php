@@ -11,14 +11,14 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                   
-                <img src="" class="img-circle elevation-2"
-                    alt="User Image">
+
+                <img src="" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-            <a id="navbarDropdown" class="d-block" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
+                <a id="navbarDropdown" class="d-block" href="#" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" v-pre>
+                    {{ Auth::user()->name }}
+                </a>
             </div>
         </div>
 
@@ -46,8 +46,8 @@
                             Dashboard
                         </p>
                     </a>
-
                 </li>
+                
                 <li class="nav-item">
                     <a href="{{ route('profile') }}" class="nav-link list-group-item list-group-item-action active">
                         <i class="fas fa-user-circle"></i>
@@ -59,7 +59,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('allstudent') }}" class="nav-link list-group-item list-group-item-action active">
-                    <i class="fas fa-clipboard-list"></i>
+                        <i class="fas fa-clipboard-list"></i>
                         <p>
                             Student List
                         </p>
@@ -68,55 +68,67 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('subject') }}" class="nav-link list-group-item list-group-item-action active">
-                    <i class="fas fa-book-reader"></i>
+                        <i class="fas fa-book-reader"></i>
                         <p>
-                          Select Subject
+                            Select Subject
                         </p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('selected_subject') }}" class="nav-link list-group-item list-group-item-action active">
-                    <i class="fas fa-book-reader"></i>
+                    <a href="{{ route('selected_subject') }}"
+                        class="nav-link list-group-item list-group-item-action active">
+                        <i class="fas fa-book-reader"></i>
                         <p>
-                          Student Selected Subject
+                            Student Selected Subject
                         </p>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a href="{{route('grading')}}" class="nav-link list-group-item list-group-item-action active">
-                    <i class="fab fa-autoprefixer"></i>
+                        <i class="fab fa-autoprefixer"></i>
                         <p>
-                        Marking and Grading
-                        </p>
-                    </a>
-                </li>
-                   
-                <li class="nav-item">
-                    <a href="{{ route('selectstudentclass')}}" class="nav-link list-group-item list-group-item-action active">
-                    <i class="fas fa-poll-h"></i>
-                        <p>
-                          Student Result
+                            Marking and Grading
                         </p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link list-group-item list-group-item-action active">
+                    <a href="{{ route('selectstudentclass')}}"
+                        class="nav-link list-group-item list-group-item-action active">
+                        <i class="fas fa-poll-h"></i>
+                        <p>
+                            Student Result
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('rollstudent') }}" 
+                    class="nav-link list-group-item list-group-item-action active">
+                        <i class="fas fa-sort-numeric-up-alt"></i>
+                        <p>
+                            Roll Number
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('settings') }}" class="nav-link list-group-item list-group-item-action active">
                         <i class="fas fa-cogs"></i>
                         <p>
-                           Setting
+                            Setting
                         </p>
                     </a>
                 </li>
 
 
                 <li class="nav-item">
-                
+
                     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                                     <i class="fas fa-sign-out-alt"></i>
+                        <i class="fas fa-sign-out-alt"></i>
                         {{ __('Sign Out') }}
                     </a>
 
